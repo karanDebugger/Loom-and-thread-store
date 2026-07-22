@@ -11,9 +11,11 @@ on:
 
 jobs:
   build:
+
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout Repository
         uses: actions/checkout@v4
 
@@ -25,6 +27,10 @@ jobs:
       - name: Install Backend Dependencies
         working-directory: backend
         run: npm ci
+
+      - name: Verify Backend Syntax
+        working-directory: backend
+        run: node --check src/server.js
 
       - name: Install Frontend Dependencies
         working-directory: frontend
