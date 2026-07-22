@@ -44,18 +44,28 @@ jobs:
         working-directory: frontend
         run: npm run build
 
-      # -----------------------------
-      # Docker Build
-      # -----------------------------
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build Backend Docker Image
-        run: docker build -t backend:ci ./backend
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build Frontend Docker Image
-        run: docker build -t frontend:ci ./frontend
+      - name: Build and Push Backend Image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/loom-thread-backend:latest
+
+      - name: Build and Push Frontend Image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/loom-thread-frontend:latest
 
       - name: CI Completed
         run: echo "Pipeline executed successfully!"
