@@ -44,5 +44,18 @@ jobs:
         working-directory: frontend
         run: npm run build
 
+      # -----------------------------
+      # Docker Build
+      # -----------------------------
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Backend Docker Image
+        run: docker build -t backend:ci ./backend
+
+      - name: Build Frontend Docker Image
+        run: docker build -t frontend:ci ./frontend
+
       - name: CI Completed
         run: echo "Pipeline executed successfully!"
