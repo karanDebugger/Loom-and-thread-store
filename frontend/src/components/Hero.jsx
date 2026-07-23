@@ -23,7 +23,10 @@ function Hero() {
             premium fabrics, and luxury that speaks without words.
           </p>
 
-          <button className="mt-12 bg-white text-black px-10 py-4 rounded-xl font-semibold flex items-center gap-3 hover:bg-gray-200 transition-all duration-300">
+          <button
+            data-testid="shop-now-btn"
+            className="mt-12 bg-white text-black px-10 py-4 rounded-xl font-semibold flex items-center gap-3 hover:bg-gray-200 transition-all duration-300"
+          >
             Shop Now
             <ArrowRight size={22} />
           </button>
@@ -42,5 +45,5 @@ function Hero() {
     </section>
   );
 }
-
+ 
 export default Hero; 

@@ -32,7 +32,10 @@ function FeaturedProducts() {
   return (
     <section className="bg-black py-24">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-5xl font-bold text-white mb-3">
+        <h2
+          data-testid="featured-products-heading"
+          className="text-5xl font-bold text-white mb-3"
+        >
           New Arrivals
         </h2>
 
